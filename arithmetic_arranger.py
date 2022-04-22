@@ -4,11 +4,12 @@ import re
 
 def arithmetic_arranger(list_number):
     if len(list_number) > 5:
-        print("Error: Too many problems")
+        print("Error: Too many problems.")
         exit()   
     list1 = []
     list2 = []
     list3 = []
+    list4 = []
     mystr = "-"
     for i in list_number:
         simbolo = re.findall('(\s[+-]\s)',i)
@@ -22,13 +23,19 @@ def arithmetic_arranger(list_number):
             simbol = i.find("+")
             num1 = i[:simbol-1]            
             num2 = i[simbol:]
-            num3 = i[simbol+2:]                
+            num3 = i[simbol+2:]
+                         
             #print("suma")
             try:
                 numerador1 = int(num1)
                 numerador2 = int(num3)
-                adicion = numerador1+numerador2
-                print(adicion)
+                if len(num1) > 4 or len(num3) > 4:
+                    print("Error: Numbers cannot be more than four digits.")
+                    break
+                else: 
+                    adicion = numerador1+numerador2
+                    list4.append(adicion)
+                    print(adicion)
             except:
                 print("Error: Numbers must only contain digits.")
                 exit()
@@ -37,17 +44,19 @@ def arithmetic_arranger(list_number):
             num1 = i[:simbol-1]            
             num2 = i[simbol:]
             num3 = i[simbol+2:]
-            #print("resta")
             try:
                 numerador1 = int(num1)
                 numerador2 = int(num3)
-                resta = numerador1-numerador2
-                print(resta)
+                if len(num1) > 4 or len(num3) > 4:
+                    print("Error: Numbers cannot be more than four digits.")
+                    break
+                else: 
+                    resta = numerador1-numerador2
+                    list4.append(resta)
+                    print(resta)
             except:
                 print("Error: Numbers must only contain digits.")
                 exit()
-            
-        #simbol = i.find(simbolo)
         
         if len(num1) > len(num2):
             num2 = num2.replace(" "," "*(len(num1)-len(num2)+3),1)
@@ -57,22 +66,12 @@ def arithmetic_arranger(list_number):
         list2.append(num2)
         list3.append(my_str)
         
-    listsum = [list1,list2,list3]
+    listsum = [list1,list2,list3,list4]
 
     print(list1)
     print(list2)
     print(list3)
     print (tabulate(listsum, stralign="right", tablefmt="plain"))
 
-list_number = ["25 + 756","55 + 22", "123 + 1","55 + 232"]
+list_number = ["25 - 7132","55 + 22", "123 + 1","55 + 232"]
 arithmetic_arranger(list_number)
-
-# def suma(num1, num3):
-#     try:
-#         numerador1 = int(num1)
-#         numerador2 = int(num3)
-#         adicion = numerador1+numerador2
-#         return adicion
-#     except:
-#         print("Error: Numbers must only contain digits.")
-#         exit()
