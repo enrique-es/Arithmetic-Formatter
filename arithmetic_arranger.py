@@ -1,4 +1,3 @@
-from ast import operator
 from tabulate import tabulate
 import re
 
@@ -18,27 +17,29 @@ def arithmetic_arranger(list_number):
         except:
             print("Error: Operator must be '+' or '-'")
             exit()
-        
+    for i in list_number:
+        simbolo = re.findall('(\s[+-]\s)',i)       
+        operador = str(simbolo[0])   
         if operador[1] == "+":
             simbol = i.find("+")
             num1 = i[:simbol-1]            
             num2 = i[simbol:]
             num3 = i[simbol+2:]
                          
-            #print("suma")
             try:
                 numerador1 = int(num1)
-                numerador2 = int(num3)
-                if len(num1) > 4 or len(num3) > 4:
-                    print("Error: Numbers cannot be more than four digits.")
-                    break
-                else: 
-                    adicion = numerador1+numerador2
-                    list4.append(adicion)
-                    print(adicion)
+                numerador2 = int(num3)                
             except:
                 print("Error: Numbers must only contain digits.")
                 exit()
+            if len(num1) > 4 or len(num3) > 4:
+                print("Error: Numbers cannot be more than four digits.")
+                exit()
+            else: 
+                adicion = numerador1+numerador2
+                list4.append(adicion)
+                print(adicion)
+
         elif operador[1] == "-":
             simbol = i.find("-")
             num1 = i[:simbol-1]            
@@ -47,16 +48,16 @@ def arithmetic_arranger(list_number):
             try:
                 numerador1 = int(num1)
                 numerador2 = int(num3)
-                if len(num1) > 4 or len(num3) > 4:
-                    print("Error: Numbers cannot be more than four digits.")
-                    break
-                else: 
-                    resta = numerador1-numerador2
-                    list4.append(resta)
-                    print(resta)
             except:
                 print("Error: Numbers must only contain digits.")
                 exit()
+            if len(num1) > 4 or len(num3) > 4:
+                print("Error: Numbers cannot be more than four digits.")
+                exit()
+            else:
+                resta = numerador1-numerador2
+                list4.append(resta)
+                print(resta)          
         
         if len(num1) > len(num2):
             num2 = num2.replace(" "," "*(len(num1)-len(num2)+3),1)
@@ -73,5 +74,5 @@ def arithmetic_arranger(list_number):
     print(list3)
     print (tabulate(listsum, stralign="right", tablefmt="plain"))
 
-list_number = ["25 - 7132","55 + 22", "123 + 1","55 + 232"]
+list_number = ["25 - 7412","55 + 1245", "123 - 1"]
 arithmetic_arranger(list_number)
