@@ -1,4 +1,4 @@
 import arithmetic_arranger
 
 
-arithmetic_arranger.arithmetic_arranger(['32 - 698', '1 - 3801', '45 + 43', '123 + 49', '988 + 40'], True)
+print(arithmetic_arranger.arithmetic_arranger(['3 / 855', '3801 - 2', '45 + 43', '123 + 49'], True))
